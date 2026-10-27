@@ -2,8 +2,8 @@
 
 API REST em **TypeScript** para recebimento de webhooks (postbacks) de plataformas de checkout e geração de relatórios consolidados de vendas.
 
-- **URL Pública da Aplicação:** `https://SUA-URL-NO-RENDER.onrender.com`
-- **Relatório ao vivo (`GET`):** `https://SUA-URL-NO-RENDER.onrender.com/sales/report`
+- **URL Pública da Aplicação:** `https://desafio-twr-postbacks.onrender.com`
+- **Relatório ao vivo (`GET`):** `https://desafio-twr-postbacks.onrender.com/sales/report`
 
 ---
 
@@ -16,7 +16,7 @@ Registra uma nova transação ou atualiza o estado de uma transação existente.
 **Exemplo de requisição (`curl`):**
 
 ```bash
-curl -X POST [https://SUA-URL-NO-RENDER.onrender.com/postbacks](https://SUA-URL-NO-RENDER.onrender.com/postbacks) \
+curl -X POST https://desafio-twr-postbacks.onrender.com/postbacks \
   -H "Content-Type: application/json" \
   -d '{
     "transaction_id": "chk_987654321",
@@ -69,7 +69,7 @@ Retorna o consolidado financeiro, métricas por status, ranking por produto e a 
 **Exemplo de requisição (`curl`):**
 
 ```bash
-curl [https://SUA-URL-NO-RENDER.onrender.com/sales/report](https://SUA-URL-NO-RENDER.onrender.com/sales/report)
+curl https://desafio-twr-postbacks.onrender.com/sales/report
 ```
 
 *(Filtros opcionais via query params: `?status=approved`, `?product_name=Assinatura`, `?start_date=2026-10-01` e `?end_date=2026-10-31`)*
@@ -124,7 +124,7 @@ curl [https://SUA-URL-NO-RENDER.onrender.com/sales/report](https://SUA-URL-NO-RE
 ```bash
 npm install
 npm run dev
-# Servidor disponível em http://localhost:3000
+
 ```
 
 ---
@@ -162,4 +162,4 @@ Dentro do escopo de 3 a 4 horas, priorizei a resiliência das regras de negócio
 3. **Banco de dados externo gerenciado (PostgreSQL/MySQL):**
    - **Motivo:** Optei pelo SQLite (`better-sqlite3`) para manter a aplicação 100% autocontida e fácil de rodar localmente com um único comando. Como trade-off conhecido em hospedagens gratuitas (como o plano Free do Render), o disco do container é efêmero em caso de *redeploy* ou reinicialização por inatividade prolongada.
 4. **Interface Gráfica (Frontend):**
-   - **Motivo:** O foco do desafio é o comportamento do serviço receptor e a consistência dos dados entre o `POST` e o `GET`. Concentrei o tempo em blindar a API contra inconsistências financeiras.
+   - **Motivo:** na minha interpretação o foco do desafio é o comportamento do serviço receptor e a consistência dos dados entre o `POST` e o `GET`. Concentrei o tempo em blindar a API contra inconsistências financeiras.
